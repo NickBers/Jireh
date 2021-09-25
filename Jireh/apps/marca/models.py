@@ -6,6 +6,7 @@ class Marca(models.Model):
     class Meta:
             verbose_name='Marca'
             verbose_name_plural='Marcas'
+            ordering = ["-id"]
 
     def __str__(self):
         return self.nombre

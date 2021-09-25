@@ -23,10 +23,10 @@ class Detalles(models.Model):
     cantidad=models.IntegerField(null=False)
     monto=models.FloatField(null=False)
     subtotal = models.FloatField()
-    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
-    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edicion")
     producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edicion")
     class Meta:
         verbose_name = "Detalle"
         verbose_name_plural = "Detalles"

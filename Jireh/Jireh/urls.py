@@ -20,6 +20,7 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('administrador/', views.index, name="administrador")
+    path('administrador/', views.index, name="administrador"),
+    path('proveedor/',include('apps.proveedor.urls'))
     
 ]

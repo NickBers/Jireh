@@ -1,0 +1,37 @@
+{% extends 'administrador/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="card card-default">
+    <div class="card-header bg-gray-dark color-palette" >
+        <h3 class="card-title ">
+            <i class="fas fa-search"></i>
+                Proveedores
+        </h3>
+    </div>
+    <div class="card-body ">
+        <table class="table" id="data">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody> 
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'CreateProveedor'%}"class="btn bg-gray-dark color-palette btn-flat" id="button">
+            <i class="fas fa-plus"></i> Nuevo registro
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %} 
+
+<script src="{% static 'js/list.js'%}"></script>
+{% endblock %}
