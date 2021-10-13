@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core import views
+from apps.loginAdmin.views import LoginView
 
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('administrador/', views.index, name="administrador"),
-    path('proveedor/',include('apps.proveedor.urls'))
-    
+    path('proveedor/',include('apps.proveedor.urls')),
+    path('login/', include('apps.loginAdmin.urls')),
 ]

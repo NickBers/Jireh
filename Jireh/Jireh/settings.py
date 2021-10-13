@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.producto',
     'apps.proveedor',
     'apps.venta',
+    'apps.loginAdmin',
+    'widget_tweaks',
     'core'   
 ]
 
@@ -144,3 +146,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+LOGIN_REDIRECT_URL = '/administrador/'
+
+LOGOUT_REDIRECT_URL = '/login/'
+
+LOGIN_URL = '/login/'

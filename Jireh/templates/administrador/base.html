@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jireh</title>
-
+  <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js'%}"></script>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -318,8 +318,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Inline Charts</li>
+              <li class="breadcrumb-item"><a href="#">{{ request.user.username }}</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'logout'%}">Cerrar Sesion<a/></li>
             </ol>
           </div>
         </div>
@@ -382,8 +382,9 @@
 <script src="{% static 'lib/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'%}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'lib/adminlte/js/adminlte.js'%}"></script>
+
+<script src="{% static 'lib/jquery-confirm-v3.3.4/adminlte.js'%}"></script>
 <!--Alert-->
-<script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.js'%}"></script>
 <!-- Data table libreria-->
 <script src="{% static 'lib/adminlte/js/pages/dashboard.js'%}"></script>
 <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>

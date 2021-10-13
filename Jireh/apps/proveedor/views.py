@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Proveedor
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from .form import ProveedorForm
 from django.urls import reverse_lazy  
 from django.http import JsonResponse, HttpResponseRedirect
@@ -116,6 +116,8 @@ class DeleteProveedorview(DeleteView):
         context['list_url'] = reverse_lazy('ShowProveedor')
         context['action'] = 'edit'
         return context  
+
+
 
     
 
