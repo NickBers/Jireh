@@ -6,6 +6,7 @@ urlpatterns = [
     path('',ProveedorListView.as_view(), name="ShowProveedor"),
     path('proveedor/create/',CreateProveedorView.as_view(), name="CreateProveedor"),
     path('proveedor/update/<int:pk>/', UpdateProveedorView.as_view(), name="UpdateProveedor"),
-    path('proveedor/delete/<int:pk>/', DeleteProveedorview.as_view(), name="DeleteProveedor")
+    path('proveedor/delete/<int:pk>/', DeleteProveedorview.as_view(), name="DeleteProveedor"),
+    path('proveedor/detalle/<int:pk>/', DetalleProveedorview.as_view(), name="DetalleProveedor")
     
 ]

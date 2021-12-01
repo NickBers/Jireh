@@ -12,6 +12,11 @@ from django.utils.decorators import method_decorator
 """def proveedor(request):
     proveedor = Proveedor.objects.all()
     return render(request,"administrador/proveedor.html",{'proveedor': proveedor})"""
+
+class DetalleProveedorview(ListView):
+    model=Proveedor
+    template_name= 'administrador/proveedor/proveedor.html'
+
 class ProveedorListView(ListView):
     model=Proveedor
     template_name= 'administrador/proveedor/proveedor.html'
@@ -40,6 +45,11 @@ class CreateProveedorView(CreateView):
     template_name='administrador/proveedor/create.html'
     success_url = reverse_lazy('ShowProveedor')
 
+    
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+        
     def post(self, request, *args, **kwargs):
         data = {}
         try:
@@ -66,6 +76,7 @@ class UpdateProveedorView(UpdateView):
     template_name='administrador/proveedor/create.html'
     success_url = reverse_lazy('ShowProveedor')
 
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -97,6 +108,8 @@ class DeleteProveedorview(DeleteView):
     template_name = 'administrador/proveedor/delete.html'
     success_url = reverse_lazy('ShowProveedor')
 
+    
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -118,8 +131,6 @@ class DeleteProveedorview(DeleteView):
         return context  
 
 
-
-    
 
 
     

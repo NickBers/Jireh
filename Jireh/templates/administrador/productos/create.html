@@ -1,0 +1,64 @@
+{% extends 'administrador/base.html' %}
+{% block pagetitle%}Añadir Nuevo Producto{%endblock%}
+{% block content %}
+{% load static%}
+<div class="card card-primary">
+    <div class="card-header bg-gray-dark color-palette">
+      <h3 class="card-title">Añadir nuevo Producto</h3>
+    </div>
+    <form method="POST" action="." enctype="multipart/form-data">   
+      <div class="card-body">
+      {% csrf_token %}
+        
+        <input type="hidden" name="action" value="{{ action }}">
+        
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+          <label for="nombre">{{field.label}}:</label>
+            {{field}}
+        </div>
+        {% endfor %}
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer">
+        <button type="submit" class="btn bg-gray-dark color-palette">Agregar</button>
+      </div>
+    </form>
+</div>
+{% endblock %}
+{% block script %} 
+    <script>
+        {% if form.errors %}
+            var errors = '';
+            {% for field in form %}
+                {% for error in field.errors %}
+                    errors += '{{ error }}\n';
+                {% endfor %}
+            {% endfor %}
+            Swal.fire({
+                title: 'Error!',
+                text: errors,
+                icon: 'error'
+            });
+        {% endif %}
+
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            //var parameters = $(this).serializeArray();
+            var parameters = new FormData(this);
+            submit_with_ajax(window.location.pathname, 'Notificación', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
+                location.href = '{{ list_url }}';
+            });
+        });
+    </script>
+    <script>
+      $(document).ready(function(){
+        $('#id_proveedor').select2();
+        $('#id_categoria').select2();
+        $('#id_automovil').select2();
+        $('#id_marca').select2();
+      });
+    </script>
+
+   <script src="{% static 'js/error.js'%}"></script>
+{% endblock %}

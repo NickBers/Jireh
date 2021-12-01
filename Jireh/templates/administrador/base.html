@@ -26,6 +26,10 @@
   <link rel="stylesheet" href="{% static 'lib/adminlte/plugins/daterangepicker/daterangepicker.css'%}">
   <!-- summernote -->
   <link rel="stylesheet" href="{% static 'lib/adminlte/plugins/summernote/summernote-bs4.min.css'%}">
+
+  <link rel="stylesheet" href="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'lib/select2-4.1.0-rc.0/dist/css/select2.min.css' %}">
  {%block header%}{%endblock%}
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -273,7 +277,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="{% url 'ShowProducto'%}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Inventario</p>
                 </a>
@@ -382,9 +386,8 @@
 <script src="{% static 'lib/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'%}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'lib/adminlte/js/adminlte.js'%}"></script>
-
-<script src="{% static 'lib/jquery-confirm-v3.3.4/adminlte.js'%}"></script>
 <!--Alert-->
+<script src="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"></script>
 <!-- Data table libreria-->
 <script src="{% static 'lib/adminlte/js/pages/dashboard.js'%}"></script>
 <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
@@ -395,5 +398,6 @@
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
 <!--error js-->
     <script src="{% static 'js/error.js'%}"></script>
+    <script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/select2.min.js' %}"></script>
 </body>
 </html>

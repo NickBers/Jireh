@@ -5,12 +5,11 @@
     <div class="card-header bg-gray-dark color-palette">
       <h3 class="card-title">Añadir nuevo Proveedor</h3>
     </div>
+     
     <form method="POST" action=".">   
       <div class="card-body">
       {% csrf_token %}
-        
         <input type="hidden" name="action" value="{{ action }}">
-        
         {% for field in form.visible_fields %}
         <div class="form-group">
           <label for="nombre">{{field.label}}:</label>
@@ -44,22 +43,8 @@
         $('form').on('submit', function (e) {
             e.preventDefault();
             var parameters = $(this).serializeArray();
-            $.ajax({
-                url: window.location.pathname,
-                type: 'POST',
-                data: parameters,
-                dataType: 'json'
-            }).done(function (data) {
-                console.log(data);
-                if (!data.hasOwnProperty('error')) {
-                    location.href = '{{ list_url }}';
-                    return false;
-                }
-                message_error(data.error);
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                alert(textStatus + ': ' + errorThrown);
-            }).always(function (data) {
-
+            submit_with_ajax2(window.location.pathname, 'Notificación', '¿Estas seguro de agregar el siguiente registro?', parameters, function () {
+                location.href = '{{ list_url }}';
             });
         });
     </script>
