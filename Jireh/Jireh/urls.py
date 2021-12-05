@@ -27,6 +27,7 @@ urlpatterns = [
     path('', views.index, name="administrador"),
     path('proveedor/',include('apps.proveedor.urls')),
     path('producto/',include('apps.producto.urls')),
+    path('venta/',include('apps.venta.urls')),
     path('login/', include('apps.loginAdmin.urls')),
 ]
 

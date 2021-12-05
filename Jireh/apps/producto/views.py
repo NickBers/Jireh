@@ -7,11 +7,13 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.decorators import method_decorator
 from .form import ProductForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class ProductoListView(ListView):
+class ProductoListView(LoginRequiredMixin,ListView):
     model=Producto
     template_name='administrador/productos/producto.html'
 
+    
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
@@ -21,12 +23,13 @@ class ProductoListView(ListView):
         return context
 
 # Create your views here.
-class ProductoCreateView(CreateView):
+class ProductoCreateView(LoginRequiredMixin,CreateView):
     model = Producto
     form_class = ProductForm
     template_name = 'administrador/productos/create.html'
     success_url = reverse_lazy('ShowProducto')
 
+   
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)

@@ -7,17 +7,15 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.decorators import method_decorator
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 """def proveedor(request):
     proveedor = Proveedor.objects.all()
     return render(request,"administrador/proveedor.html",{'proveedor': proveedor})"""
 
-class DetalleProveedorview(ListView):
-    model=Proveedor
-    template_name= 'administrador/proveedor/proveedor.html'
 
-class ProveedorListView(ListView):
+
+class ProveedorListView(LoginRequiredMixin,ListView):
     model=Proveedor
     template_name= 'administrador/proveedor/proveedor.html'
 
@@ -39,13 +37,12 @@ class ProveedorListView(ListView):
             data['error'] = str(e)
         return JsonResponse(data, safe=False) 
     
-class CreateProveedorView(CreateView):
+class CreateProveedorView(LoginRequiredMixin,CreateView):
     model=Proveedor
     form_class=ProveedorForm
     template_name='administrador/proveedor/create.html'
     success_url = reverse_lazy('ShowProveedor')
 
-    
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
@@ -70,11 +67,12 @@ class CreateProveedorView(CreateView):
         context['action'] = 'add'
         return context  
 
-class UpdateProveedorView(UpdateView):
+class UpdateProveedorView(LoginRequiredMixin,UpdateView):
     model=Proveedor
     form_class=ProveedorForm
     template_name='administrador/proveedor/create.html'
     success_url = reverse_lazy('ShowProveedor')
+
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -103,12 +101,11 @@ class UpdateProveedorView(UpdateView):
         context['action'] = 'edit'
         return context  
 
-class DeleteProveedorview(DeleteView):
+class DeleteProveedorview(LoginRequiredMixin,DeleteView):
     model = Proveedor
     template_name = 'administrador/proveedor/delete.html'
     success_url = reverse_lazy('ShowProveedor')
-
-    
+ 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
